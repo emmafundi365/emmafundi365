@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My E-Commerce</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: orange;
+    }
+    header {
+      background: #222; color: white; padding: 15px;
+      text-align: center;
+    
+    }
+    .product {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 10px;
+      width: 200px;
+      display: inline-block;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .cart {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛒 My Shop</h1>
+  </header>
+
+
+  <div class="cart">
+    <h3>Cart</h3>
+    <ul id="cart-items"></ul>
+    <p>Total: $<span id="total">0</span></p>
+  </div>
+
+  <div class="product">
+    <img src="/storage/emulated/0/Pictures/Screenshots/img3.jpg" alt="Product 1">
+    <h2>Product 1</h2>
+    <p>$10</p>
+    <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="/storage/emulated/0/Pictures/Screenshots/img2.jpg" alt="Product 2">
+    <h2>Product 2</h2>
+    <p>$20</p>
+    <button onclick="addToCart('Product 2', 20)">Add to Cart</button>
+  </div>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(product, price) {
+      cart.push({ product, price });
+      total += price;
+      updateCart();
+    }
+
+    function updateCart() {
+      let cartList = document.getElementById("cart-items");
+      cartList.innerHTML = "";
+      cart.forEach(item => {
+        let li = document.createElement("li");
+        li.textContent = `${item.product} - $${item.price}`;
+        cartList.appendChild(li);
+      });
+      document.getElementById("total").textContent = total;
+    }
+    
+  </script>
+
+</body>
